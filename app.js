@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const ngrok = require("ngrok")
 const app = express();
+require("dotenv").config();
 
 // MongoDB User Schema
 const userSchema = new mongoose.Schema({
@@ -25,7 +26,7 @@ app.use(session({
 }));
 
 // Replace with your bot token from BotFather
-const BOT_TOKEN = '7872322715:AAGSkfLfo8gIlJ2IWb-rBgNfda3C8MQgUmY';
+const BOT_TOKEN = process.env.BOT_TOKEN;
 
 // Function to verify Telegram authentication data
 function verifyTelegramAuth(data) {
@@ -144,10 +145,10 @@ mongoose.connect('mongodb://localhost:27017/telegram-auth', {
 const localtunnel = require('localtunnel');
 
 app.listen(2000, async () => {
-  console.log('Server running on port 3000');
+  console.log('Server running on port 2000');
   const tunnel = await localtunnel({ 
-    port: 2000,
-    subdomain: 'wistefbot' // This will give you https://wistefbot.loca.lt
+    port: 3000,
+     subdomain:'telebot'  // here you can specify your sub-domain:
   });
   console.log('Tunnel URL:', tunnel.url);
 });
